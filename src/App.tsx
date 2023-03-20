@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
 
-function App() {
+export const App = () => {
+  const initial_time_in_seconds = 25 * 60; //25 Minutes
+
+  const [time, setTime] = useState(0);
+
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+
+  const startTimer = () => {
+    setTime(initial_time_in_seconds);
+  }
+
+  useEffect(() => {
+    time > 0 && setTimeout(() => setTime((state) => state - 1), 1000);
+  }, [time]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={startTimer}>Start</button>
+      <br/>
+      <span>{minutes.toString().padStart(2, "0")}</span>
+      <span>:</span>
+      <span>{seconds.toString().padStart(2, "0")}</span>
     </div>
   );
-}
-
-export default App;
+};
