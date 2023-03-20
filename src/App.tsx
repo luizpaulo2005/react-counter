@@ -24,7 +24,7 @@ export const App = () => {
       <button onClick={() => setIsRunning(false)}>Pause</button>
       <button onClick={() => setIsRunning(true)}>Continuar</button>
 
-      <input type="number" disabled={isRunning} value={time} onChange={e => setTime(parseInt(e.target.value))}/>
+      <input placeholder="Digite o tempo em segundos" type="number" disabled={isRunning} value={time} onChange={e => setTime(parseInt(e.target.value))}/>
       <br/>
 
       <span>{hours.toString().padStart(2, "0")}</span>
